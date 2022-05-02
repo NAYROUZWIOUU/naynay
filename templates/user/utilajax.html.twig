@@ -1,0 +1,24 @@
+{% for utils in users %}
+
+
+        <tr>
+            <td>{{ utils.id }}</td>
+            <td>{{ utils.nom }}</td>
+            <td>{{ utils.prenom }}</td>
+            <td>{{ utils.email }}</td>
+            <td>{{ utils.password }}</td>
+            <td>{{ utils.date |date('d-m-Y') }}</td>
+            <td>{{ utils.numTel }}</td>
+            <td>{{ utils.adresse }}</td>
+            <td>{{ utils.role }}</td>
+            <td>{{ utils.etat }}</td>
+            <td>
+                <a href="{{ path('app_user_edit',{'id': utils.id }) }}" class="btn btn-warning"><i class="fas fa-pen"> Modifier</i></a>
+                <a href="{{ path('app_user_delete',{'id': utils.id }) }}" class="btn btn-danger"><i class="fas fa-trash"> Supprimer</i></a>
+            </td>
+        </tr>
+{% else %}
+    <tr>
+        <td colspan="6">no records found</td>
+    </tr>
+{% endfor %}
