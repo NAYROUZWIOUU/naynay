@@ -45,22 +45,20 @@ class LivraisonRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Livraison[] Returns an array of Livraison objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Livraison[] Returns an array of Livraison objects
+      */
+
+    public function findByLivreur($value)
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
+            ->andWhere('l.livreur = :val')
             ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Livraison

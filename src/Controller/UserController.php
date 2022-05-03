@@ -23,7 +23,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findByRole('["ROLE_LIVREUR"]'),
         ]);
     }
 
@@ -98,20 +98,6 @@ class UserController extends AbstractController
         $plan = $repository->findPlanBySujet($requestString);
         return $this->render('user/utilajax.html.twig', [
             'users' => $plan,
-        ]);
-    }
-
-    /**
-     * @Route("/getLivreurs", name="app_user_livreur", methods={"GET"})
-     */
-    public function getLivreurs(EntityManagerInterface $entityManager): Response
-    {
-        $users = $entityManager
-            ->getRepository(User::class)
-            ->findBy(Array('roles'=>'Livreur'));
-
-        return $this->render('user/index.html.twig', [
-            'users' => $users,
         ]);
     }
 }

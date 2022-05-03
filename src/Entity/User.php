@@ -37,15 +37,16 @@ class User implements UserInterface
      */
     private $roles = [];
 
+//
+//* @Assert\NotBlank(message="Ce champs ne doit pas être vide")
+//* @Assert\Regex(
+//*  pattern="/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/",
+//*  message="Votre mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 minuscule et avoir une longueur d'au moins 8 caractères."
+//* )
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     * @Assert\Regex(
-     *  pattern="/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/",
-     *  message="Votre mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 minuscule et avoir une longueur d'au moins 8 caractères."
-     * )
      */
     private $password;
 

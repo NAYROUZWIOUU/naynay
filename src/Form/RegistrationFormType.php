@@ -46,14 +46,15 @@ class RegistrationFormType extends \Symfony\Component\Form\AbstractType
             ->add('adresse')
             ->add('date')
             ->add('captchaCode', CaptchaType::class, array(
-            'captchaConfig' => 'ExampleCaptchaUserRegistration',
-            'constraints' => [
-                new ValidCaptcha([
+                'captchaConfig' => 'ExampleCaptchaUserRegistration',
+                'constraints' => [
+                    new ValidCaptcha([
                     'message' => 'Invalid captcha, please try again',
              ]),
         ],
     ));
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Livraison;
+use App\Entity\User;
 use App\Form\LivraisonType;
 use App\Repository\LivraisonRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,9 +30,10 @@ class LivraisonController extends AbstractController
     /**
      * @Route("/new", name="app_livraison_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, LivraisonRepository $livraisonRepository): Response
+    public function new(Request $request, LivraisonRepository $livraisonRepository, UserRepository $userRepository): Response
     {
         $livraison = new Livraison();
+        //$livreurs = $userRepository->findByRole('["ROLE_LIVREUR"]');
         $form = $this->createForm(LivraisonType::class, $livraison);
         $form->handleRequest($request);
 
