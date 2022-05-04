@@ -53,7 +53,18 @@
 
 <!-- header section ends-->
 <div class="container-fluid wrapper">
-{% block body %}{% endblock %}
+
+    {% for flash in app.flashes('success') %}
+        <div class="alert alert-success " style="align-items: center">{{ flash }}</div>
+    {% endfor %}
+    {% for flash in app.flashes('warning') %}
+        <div class="alert alert-warning " style="align-items: center">{{ flash }}</div>
+    {% endfor %}
+    {% for flash in app.flashes('error') %}
+        <div class="alert alert-danger " style="align-content: center">{{ flash }}</div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
 </div>
 
 <!-- footer section starts  -->

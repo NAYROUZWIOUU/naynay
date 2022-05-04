@@ -20,10 +20,17 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="app_user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(Request $request, UserRepository $userRepository): Response
     {
+        $searchValue = $request->query->get("search");//$this->get("q");
+        $requestString = $request->get('q');
+        if($searchValue == ""){
+            $users = $userRepository->findAll();
+        }else{
+            $users = $userRepository->findBy(['prenom'=>$searchValue]);
+        }
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findByRole('["ROLE_LIVREUR"]'),
+            'users' => $users,
         ]);
     }
 

@@ -91,6 +91,13 @@ class User implements UserInterface
      */
     private $adresse;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etat", type="string", length=255, nullable=false)
+     */
+    private $etat="Not Verified";
+
     public function __toString() {
         return (string)$this->getId();
     }
@@ -154,6 +161,22 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEtat(): string
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param string $etat
+     */
+    public function setEtat(string $etat): void
+    {
+        $this->etat = $etat;
     }
 
     /**
