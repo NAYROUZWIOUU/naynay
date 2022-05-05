@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use MessageBird\Objects\Message;
+use MessageBird\Objects\PartnerAccount\AccessKey;
+use MessageBird\Client;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -73,6 +76,15 @@ class RegistrationController extends AbstractController
             ]);
 
         $mailer->send($email);
+        $client = new \MessageBird\Client('klfAinpydT2vh5cV11k1eDkJt');
+        $message = new \MessageBird\Objects\Message();;
+
+        $message->originator='Bienvenu';
+        $message->recipients=['+21620789708'];
+        $message->body ='🥳Bienvenu Monsieur/Madame dans notre plateforme🥳';
+        $client->messages->create($message);
+;
+
         $this->addFlash('success',"Veuillez vérifier votre boite mail, un email de verification a été envoyé !");
     }
 

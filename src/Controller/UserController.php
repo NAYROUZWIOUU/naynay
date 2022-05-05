@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditProfileType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,7 +34,6 @@ class UserController extends AbstractController
             'users' => $users,
         ]);
     }
-
 
     /**
      * @Route("/new", name="app_user_new", methods={"GET", "POST"})
@@ -94,17 +94,5 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-    }
-    /**
-     * @Route("/admin/utilisateur/searchuser", name="utilsearchuser")
-     */
-    public function searchPlan(Request $request)
-    {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $requestString = $request->get('searchValue');
-        $plan = $repository->findPlanBySujet($requestString);
-        return $this->render('user/utilajax.html.twig', [
-            'users' => $plan,
-        ]);
     }
 }

@@ -32,9 +32,11 @@
                 <td>{{ livraison.commande }}</td>
                 <td>{{ livraison.etat }}</td>
                 <td>
+                    {% if livraison.etat != "Livree" %}
+                    <a href="{{ path('app_livraison_edit_etat', {'id': livraison.id,'etat':'Livree'}) }}"class="btn btn-info">Livree</a>
                     <a href="{{ path('app_livraison_edit_etat',{'id': livraison.id ,'etat':'Non Livree'}) }}" class="btn btn-warning">Non Livree</a>
                     <a href="{{ path('app_livraison_edit_etat',{'id': livraison.id ,'etat':'En Cours'}) }}" class="btn btn-danger">En Cours</a>
-                    <a href="{{ path('app_livraison_edit_etat', {'id': livraison.id,'etat':'Livree'}) }}"class="btn btn-info">Livree</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -44,6 +46,7 @@
         {% endfor %}
         </tbody>
     </table>
+{#        <div> <p>Nb Restants: {{ nbRestants }}</p></div>#}
     </section>
 
 {% endblock %}

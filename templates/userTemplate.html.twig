@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/41664e673b.js" crossorigin="anonymous"></script>
     <title>{% block title %}ForU{% endblock %}</title>
 
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -38,6 +39,7 @@
 
     <div class="icons">
     {% if is_granted('ROLE_USER') %}
+        <a href="{{ path ('app_livraison_user') }}" class="fa-solid fa-truck"></a>
         <a href="{{path ('app_favoris')}}" class="fas fa-heart"></a>
         <a href="{{ path ('app_panier') }}" class="fas fa-shopping-cart"></a>
         <a href="{{ path ('app_historique') }}" class="fas fa-history"></a>

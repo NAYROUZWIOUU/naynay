@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Livraison;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -56,6 +57,35 @@ class LivraisonRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    /**
+     * @return Livraison[] Returns an array of Livraison objects
+     */
+
+    public function findByUser($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function getNbLiv($liv){
+
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select(' count(l.id) ')
+            ->from(Livraison::class, 'l')
+            ->where('l.etat =:etat Or l.etat =:etat1')
+            ->setParameter('etat', 'En Cours')
+            ->setParameter('etat1', 'Non Livree')
+            ->andWhere('l.livreur = :livreur')
+            ->setParameter('livreur', $liv)
+            ->getQuery()
+            ->getSingleScalarResult()
         ;
     }
 
