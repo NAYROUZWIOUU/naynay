@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-            $this->SendSMS();
+           /* $this->SendSMS();*/
             $this->sendConfirmationEmail($mailer,$verifyEmailHelper,$user);
 
             return $this->redirectToRoute('app_login');
@@ -117,21 +117,16 @@ class RegistrationController extends AbstractController
         }
     }
 
-    /**
-     * @throws \MessageBird\Exceptions\BalanceException
-     * @throws \MessageBird\Exceptions\AuthenticateException
-     * @throws \JsonException
-     * @throws \MessageBird\Exceptions\HttpException
-     */
-    function SendSMS(){
-        $MessageBird = new \MessageBird\Client('oVJD79zcvgDsnmPhGCM3sxcSM');
+
+   /* function SendSMS(){
+        $MessageBird = new \MessageBird\Client('D2taeWcG7RGZos0yaCQLOQGpk');
         $Message = new \MessageBird\Objects\Message();
         $Message->originator = 'ForU';
-        $Message->recipients = array(+21620789708);
+        $Message->recipients = array(+21622841857);
         $Message->body = '🥳Bienvenu   dans notre plateforme🥳';
 
         $MessageBird->messages->create($Message);
         return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
 
 }
