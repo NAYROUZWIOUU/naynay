@@ -2,9 +2,6 @@
 
 namespace App\Controller;
 
-use MessageBird\Objects\Message;
-use MessageBird\Objects\PartnerAccount\AccessKey;
-use MessageBird\Client;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -22,6 +19,9 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
+use MessageBird\Objects\Message;
+use MessageBird\Objects\PartnerAccount\AccessKey;
+use MessageBird\Client;
 
 class RegistrationController extends AbstractController
 {
@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+            $this->SendSMS();
             $this->sendConfirmationEmail($mailer,$verifyEmailHelper,$user);
 
             return $this->redirectToRoute('app_login');
@@ -76,15 +76,6 @@ class RegistrationController extends AbstractController
             ]);
 
         $mailer->send($email);
-        $client = new \MessageBird\Client('klfAinpydT2vh5cV11k1eDkJt');
-        $message = new \MessageBird\Objects\Message();;
-
-        $message->originator='Bienvenu';
-        $message->recipients=['+21620789708'];
-        $message->body ='🥳Bienvenu Monsieur/Madame dans notre plateforme🥳';
-        $client->messages->create($message);
-;
-
         $this->addFlash('success',"Veuillez vérifier votre boite mail, un email de verification a été envoyé !");
     }
 
@@ -118,7 +109,29 @@ class RegistrationController extends AbstractController
             $user->setEtat("Verified");
             $userRepository->add($user,true);
             $this->addFlash('success', 'Votre compte a été bien verifié '.$user->getPrenom().' '.$user->getNom().', Vous pouvez se connecter maintenant');
+
+
+            return $this->redirectToRoute('app_login');
+        }else{
             return $this->redirectToRoute('app_login');
         }
     }
+
+    /**
+     * @throws \MessageBird\Exceptions\BalanceException
+     * @throws \MessageBird\Exceptions\AuthenticateException
+     * @throws \JsonException
+     * @throws \MessageBird\Exceptions\HttpException
+     */
+    function SendSMS(){
+        $MessageBird = new \MessageBird\Client('oVJD79zcvgDsnmPhGCM3sxcSM');
+        $Message = new \MessageBird\Objects\Message();
+        $Message->originator = 'ForU';
+        $Message->recipients = array(+21620789708);
+        $Message->body = '🥳Bienvenu   dans notre plateforme🥳';
+
+        $MessageBird->messages->create($Message);
+        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+    }
+
 }

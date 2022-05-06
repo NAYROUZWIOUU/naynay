@@ -32,8 +32,26 @@
             <th>Etat</th>
             <td>{{ livraison.etat }}</td>
         </tr>
+        <tr>
+            <th>Qr Code</th>
+            <td><script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+                <div id="qrcode"></div>
+                <script>
+                const qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: '\t--- Livraison num : {{ livraison.id }} ---\nReference : {{ livraison.nom }} \nClient : {{ livraison.user.prenom}} \nLivreur : {{ livraison.livreur.prenom}} \nCommande id : {{ livraison.commande}} \nEtat : {{ livraison.etat}} \n',
+                width: 128,
+                height: 128,
+                colorDark : '#000',
+                colorLight : '#fff',
+                correctLevel : QRCode.CorrectLevel.H
+                });
+                </script>
+            </td>
+        </tr>
         </tbody>
     </table>
+
 
 
 
