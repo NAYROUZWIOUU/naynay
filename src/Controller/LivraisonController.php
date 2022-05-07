@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Dompdf\Image;
 
 /**
  * @Route("/admin/livraison")
@@ -88,5 +91,39 @@ class LivraisonController extends AbstractController
         }
 
         return $this->redirectToRoute('app_livraison_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     *@Route("/PDF/{id}", name="pdf")
+     */
+    public function pdf($id)
+    {
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $livraison = $this->getDoctrine()->getRepository(Livraison::class)->find($id);
+
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('livraison/PDF.html.twig', [
+            'livraison' => $livraison
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("livraison.pdf", [
+            "Attachment" => true
+        ]);
     }
 }

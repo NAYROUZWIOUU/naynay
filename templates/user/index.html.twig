@@ -18,6 +18,12 @@
         <span class="navbar-brand mb-0 h1">Liste des utilisateurs</span>
     </nav>
     <table class="table table-striped" style="width: 100%">
+    <td>
+        <a href="{{ path('app_user_new') }}"class="btn btn-info">Ajouter</a>
+    </td>
+    <td>
+        <a href="{{ path('app_stats_contoller') }}"class="btn btn-info">Statistiques</a>
+    </td>
 
     <form id="search-form" class="example-wrapper" role="search" method="get" action="{{ path('app_user_index') }}">
         <div>
@@ -63,7 +69,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('app_user_new') }}"class="btn btn-info">Ajouter</a>
+
 
 
     <div id="search-results" class="example-wrapper"></div>

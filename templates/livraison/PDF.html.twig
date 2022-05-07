@@ -1,0 +1,33 @@
+{#<img src="C:/Users/Nayrouz/OneDrive/Desktop/Web/public/ressources/logo.png" width="40px" height="40px">#}
+<h1 align="center" style="color:#ff3f00;">Référence Livraison : {{ livraison.id }}  </h1>
+<div align="center" border="1">
+
+
+    <h5 style="color:#6cdc33;">Livraison nom : {{ livraison.nom }}</h5>
+    <h5 style="color:#000000;">Nom Client : {{ livraison.user.prenom}}</h5>
+    <h5 style="color:#000000;">Prenom Client : {{ livraison.user.nom}}</h5>
+    <h5 style="color:#000000;">Commande id : {{ livraison.commande}}</h5>
+    <h5 style="color:#000000;">Commande Total en Dt : {{ livraison.commande.total}}</h5>
+    <h5 style="color:#000000;">Numéro Portable : {{ livraison.user.numTel}}</h5>
+    <h5 style="color:#000000;">Adresse Livraison : {{ livraison.user.adresse}}</h5>
+    <h5 style="color:#000000;">Nom Livreur : {{ livraison.livreur.prenom}}</h5>
+    <h5 style="color:#000000;">Prenom Livreur : {{ livraison.livreur.prenom}}</h5>
+    <h5 style="color:#000000;">Numéro Portable Livreur : {{ livraison.livreur.numTel}}</h5>
+
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+    <div id="qrcode"></div>
+    <script>
+        const qrcode = new QRCode(document.getElementById('qrcode'), {
+            text: '\t--- Livraison num : {{ livraison.id }} ---\nReference : {{ livraison.nom }} \nClient : {{ livraison.user.prenom}} \nLivreur : {{ livraison.livreur.prenom}} \nCommande id : {{ livraison.commande}} \nEtat : {{ livraison.etat}} \n',
+            width: 128,
+            height: 128,
+            colorDark : '#000',
+            colorLight : '#fff',
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+
+    <img id="image_qr" style="width: 120px;height: 120px;" src="{{ qr_code_data_uri(" Reference livraison : "~livraison.id~"\n**** Livraison nom : "~livraison.nom~"\n**** Nom Client : "~livraison.user.prenom~"\n**** Nom Livreur : "~livraison.livreur.prenom~"\n**** Numéro Commande : "~livraison.commande)}}" />
+
+</div>
