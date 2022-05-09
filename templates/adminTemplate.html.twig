@@ -223,7 +223,7 @@
                     <li class="nav-item">
                       <a href="{{ path('admin_promotion_index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Affficher promotion</p>
+                        <p>Afficher promotion</p>
                       </a>
                     </li>
                     <li class="nav-item">
@@ -251,23 +251,24 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-edit"></i>
-                    <p>
-                      Réclamations
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Test</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>
+                Réclamation
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ path('app_reclamation_admin_index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Afficher réclamation</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
                 <li class="nav-item">
                   <a href="{{ path('app_logout') }}" class="nav-link">
                   <i class="nav-icon fas fa-sign-out-alt"></i>

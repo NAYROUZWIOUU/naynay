@@ -1,4 +1,11 @@
+{% block stylesheets %}
+    <style>
+        .form-control{
+            font-size: 1.6rem;
+        }
+    </style>
 
+{% endblock %}
 {{form_start(form)}}
 <div class="form-group">
     {{ form_label(form.nom) }}
@@ -12,7 +19,7 @@
 </div>
 <div class="form-group">
     {{ form_label(form.date) }}
-    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+    {{ form_widget(form.date) }}
 
 </div>
 <div class="form-group">

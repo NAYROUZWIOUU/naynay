@@ -79,15 +79,7 @@ class MainController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/reclamation", name="app_reclamation")
-     */
-    public function reclamation(): Response
-    {
-        return $this->render('main/pages/reclamation.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-    }
+
 
     /**
      * @Route("/evenement", name="app_evenement")

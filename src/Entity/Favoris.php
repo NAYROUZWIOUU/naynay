@@ -36,7 +36,7 @@ class Favoris
      *
      * @ORM\ManyToOne(targetEntity="Menu")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $menu;

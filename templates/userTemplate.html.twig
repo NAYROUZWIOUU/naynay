@@ -33,7 +33,7 @@
         <a href="{{path ('app_home')}}">Accueil</a>
         <a href="{{path ('app_menus')}}">Menu</a>
         <a href="{{path ('app_evenement')}}">Événement</a>
-        <a href="{{path ('app_reclamation')}}">Réclamation</a>
+        <a href="{{path ('app_reclamation_user_index')}}">Réclamation</a>
         <a href="{{path ('app_about')}}">À propos</a>
     </nav>
 
@@ -65,8 +65,10 @@
     {% for flash in app.flashes('error') %}
         <div class="alert alert-danger " style="align-content: center">{{ flash }}</div>
     {% endfor %}
+    <div class="mt-3">
+        {% block body %}{% endblock %}
+    </div>
 
-    {% block body %}{% endblock %}
 </div>
 
 <!-- footer section starts  -->
