@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Dompdf\Image;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/admin/livraison")
@@ -23,11 +24,18 @@ class LivraisonController extends AbstractController
     /**
      * @Route("/", name="app_livraison_index", methods={"GET"})
      */
-    public function index(LivraisonRepository $livraisonRepository): Response
+    public function index(Request $request,LivraisonRepository $livraisonRepository, PaginatorInterface $paginator): Response
     {
-        return $this->render('livraison/index.html.twig', [
-            'livraisons' => $livraisonRepository->findAll(),
-        ]);
+        $livraison=$livraisonRepository->findAll();
+        $livraison = $paginator->paginate(
+            $livraison, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5/*limit per page*/
+        );
+        return $this->render('livraison/index.html.twig',
+            [
+                'livraisons' => $livraison,
+            ]);
     }
 
 

@@ -81,15 +81,7 @@ class MainController extends AbstractController
     }
 
 
-    /**
-     * @Route("/evenement", name="app_evenement")
-     */
-    public function evenement(): Response
-    {
-        return $this->render('main/pages/evenement.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-    }
+
 
     /**
      * @Route("/about", name="app_about")

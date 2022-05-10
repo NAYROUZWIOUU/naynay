@@ -234,23 +234,33 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-calendar-alt"></i>
-                    <p>
-                      Événements
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Test</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Événements
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ path('listevenement') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Evenements</p>
+                </a>
+                <a href="{{ path('listreservation') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Réservations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ path('addevenement') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ajouter evenement</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>

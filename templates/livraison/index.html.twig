@@ -79,5 +79,12 @@
     </table>
 
     <a href="{{ path('app_livraison_new') }}" class="btn btn-info">Ajouter</a>
+    <div class="container py-5">
+        <div class="d-flex justify-content-center">
+
+            {{ knp_pagination_render(livraisons) }}
+        </div>
+    </div>
+
 
 {% endblock %}

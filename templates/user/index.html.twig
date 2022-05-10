@@ -43,7 +43,6 @@
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
             <th scope="col">Email</th>
-            <th scope="col">Password</th>
             <th scope="col">Date</th>
             <th scope="col">Téléphone</th>
             <th scope="col">Adresse</th>
@@ -57,13 +56,12 @@
                 <td>{{ u.nom }}</td>
                 <td>{{ u.prenom }}</td>
                 <td>{{ u.email }}</td>
-                <td>{{ u.password }}</td>
                 <td>{{ u.date |date('d-m-Y') }}</td>
                 <td>{{ u.numTel }}</td>
                 <td>{{ u.adresse }}</td>
                 <td>{{ u.roles[0] }}</td>
                 <td>
-                    <a href="{{ path('app_user_edit',{'id': u.id }) }}" class="btn btn-warning"><i class="fas fa-pen"> Modifier</i></a>
+                    <a href="{{ path('app_user_edit',{'id': u.id }) }}" class="btn btn-warning">Modifier</a>
                 </td>
             </tr>
         {% endfor %}
@@ -114,7 +112,13 @@
             });
         });
     </script>
+
     {% endblock %}
 
+    <div class="container py-5">
+        <div class="d-flex justify-content-center">
 
+            {{ knp_pagination_render(users) }}
+        </div>
+    </div>
 {% endblock %}

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/admin/user")
@@ -21,12 +22,17 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="app_user_index", methods={"GET"})
      */
-    public function index(Request $request, UserRepository $userRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator, UserRepository $userRepository): Response
     {
         $searchValue = $request->query->get("search");//$this->get("q");
         $requestString = $request->get('q');
         if($searchValue == ""){
             $users = $userRepository->findAll();
+            $users = $paginator->paginate(
+                $users, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+                5/*limit per page*/
+            );
         }else{
             $users = $userRepository->findBy(['prenom'=>$searchValue]);
         }
