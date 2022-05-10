@@ -14,6 +14,10 @@ class UserChecker extends AbstractController implements UserCheckerInterface
 {
     public function checkPreAuth(UserInterface $user)
     {
+        if($user->getEtat() == "Banned"){
+            $this->addFlash('error', "Votre compte a été banni pour des raisons de sécurités ".$user->getPrenom().' '.$user->getNom().", Vous pouvez nous contacter sur naynay.foru@gmail.com ! Merci pour votre compréhension !");
+            throw new AccountExpiredException("Votre compte a été banni pour des raisons de sécurités !");
+        }
         if ($user->getEtat() == "Not Verified") {
             $this->addFlash('error',"Votre compte n'est pas encore vérifier !");
             throw new AccountExpiredException("Votre compte n'est pas encore vérifier !");
