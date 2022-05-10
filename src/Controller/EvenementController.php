@@ -57,7 +57,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/user/listevenementforU", name="app_evenement")
+     * @Route("/listevenementforU", name="app_evenement")
      */
     public function indexFront(Request $request): Response
     {
@@ -149,8 +149,8 @@ class EvenementController extends AbstractController
             $em->persist($evenement);
             $em->flush();
             $email = (new TemplatedEmail())
-                ->from('wael.abdelhedi@esprit.tn')
-                ->to('osdj@gh.com')
+                ->from('naynay.foru@gmail.com')
+                ->to('nairouza.shili@gmail.com')
                 ->subject('🥳 Un nouveau 🍛evenement🍛 est organisé à 🥳ForU🥳')
                 ->htmlTemplate('admin/evenement/email.html.twig')
                 ->context([

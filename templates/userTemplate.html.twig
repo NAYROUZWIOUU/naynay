@@ -33,7 +33,9 @@
         <a href="{{path ('app_home')}}">Accueil</a>
         <a href="{{path ('app_menus')}}">Menu</a>
         <a href="{{path ('app_evenement')}}">Événement</a>
+        {% if is_granted('ROLE_USER') %}
         <a href="{{path ('app_reclamation_user_index')}}">Réclamation</a>
+        {% endif %}
         <a href="{{path ('app_about')}}">À propos</a>
     </nav>
 
@@ -79,16 +81,16 @@
 
         <div class="box">
             <h3>Locations</h3>
-            <a href="#">Tunisia</a>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6381.124145949898!2d10.18147762628329!3d36.90082341971166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb763f2120bb%3A0xc3e79593db50c2e8!2sLa%20petite%20Ariana%2C%20Cebalat%20Ben%20Ammar!5e0!3m2!1sfr!2stn!4v1650322845664!5m2!1sfr!2stn" width="300" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="box">
             <h3>Liens rapides</h3>
-            <a href="#">Accueil</a>
-            <a href="#">Menu</a>
-            <a href="#">Événement</a>
-            <a href="#">Réclamation</a>
-            <a href="#">À propos</a>
+            <a href="{{path ('app_home')}}">Accueil</a>
+            <a href="{{path ('app_home')}}">Menu</a>
+            <a href="{{path ('app_home')}}">Événement</a>
+            <a href="{{path ('app_home')}}">Réclamation</a>
+            <a href="{{path ('app_home')}}">À propos</a>
         </div>
 
         <div class="box">
@@ -125,6 +127,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="{{asset ('js/script.js')}}"></script>
+
 {% block javascripts %}
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
